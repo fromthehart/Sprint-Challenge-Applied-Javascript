@@ -1,7 +1,30 @@
 class Carousel {
     constructor(carousel) {
+        // Grab a reference to our caroussel
         this.carousel = carousel;
-        console.log(this.carousel);
+        // console.log(this.carousel);
+        // And a reference to the left button
+        this.leftButton = document.querySelector('.left-button');
+        // console.log(this.leftButton);
+        // Likewise the right button
+        this.rightButton = document.querySelector('.right-button');
+        // console.log(this.rightButton);
+        // And a reference to all our carousel images
+        this.images = document.querySelectorAll('.carousel img');
+        // console.log(this.images)
+        if (this.images.length > 0) {
+            // console.log(this.images);
+            // Get the active slide from the data-active-slide attribute on the carousel element
+            this.index = this.carousel.dataset.activeSlide - 1; // Convert for zero indexing
+            // Make sure our slide number is within range
+            if (!this.index || this.index < 0) this.index = 0;
+            if (this.index > this.images.length - 1) this.index = this.images.length - 1;
+            // console.log(this.index);
+        } else {
+            // If no images were found, log an error and hide the carousel
+            this.carousel.style.display = 'none';
+            throw new Error('No carousel images found. Hiding the carousel');
+        }
     }
 }
 
