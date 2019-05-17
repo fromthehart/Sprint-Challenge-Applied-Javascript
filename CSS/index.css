@@ -281,6 +281,7 @@ body {
   width: 50px;
   height: 50px;
   cursor: pointer;
+  user-select: none;
 }
 .carousel .left-button:hover,
 .carousel .right-button:hover {
@@ -300,5 +301,8 @@ body {
 }
 .carousel img {
   width: 100%;
-  display: flex;
+  display: none;
+}
+.carousel img.active-slide {
+  display: block;
 }

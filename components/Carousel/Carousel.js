@@ -20,11 +20,25 @@ class Carousel {
             if (!this.index || this.index < 0) this.index = 0;
             if (this.index > this.images.length - 1) this.index = this.images.length - 1;
             // console.log(this.index);
+            this.images[this.index].classList.add('active-slide');
         } else {
             // If no images were found, log an error and hide the carousel
             this.carousel.style.display = 'none';
             throw new Error('No carousel images found. Hiding the carousel');
         }
+        this.leftButton.addEventListener('click', () => {
+            this.advanceSlide(this.index - 1);
+        });
+        this.rightButton.addEventListener('click', () => {
+            this.advanceSlide(this.index + 1);
+        });
+    }
+    advanceSlide(next) {
+        if (next < 0) next = this.images.length - 1;
+        if (next === this.images.length) next = 0;
+        this.images[this.index].classList.remove('active-slide');
+        this.images[next].classList.add('active-slide');
+        this.index = next;
     }
 }
 
